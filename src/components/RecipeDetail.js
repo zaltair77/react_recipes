@@ -1,31 +1,40 @@
 import React from 'react'
 import RecImg from '../static/images/capture.png'
 
-const RecipeDetail = (props) => (
-  <div style={props.style}>
-    <h2>Recipe1</h2>
-    <img src='https://media.pitchfork.com/photos/5c47501a828b6307e6d863e9/1:1/w_320/Gallipoli_Beirut.jpg' />
-    <div>
-      <span>Cat</span>
-      <span>Cal</span>
+const RecipeDetail = (props) => {
+  if (!props.recipe) {
+    return (
+      <p style={props.style}>
+        Please select recipe to see the detail.
+      </p>
+    )
+  }
+  return (
+    <div style={props.style}>
+      <h2>{props.recipe.name}</h2>
+      <img src={props.recipe.image}/>
+      <div>
+        <span>{props.recipe.category}</span>
+        <span>{props.recipe.calories} cal</span>
+      </div>
+      <h3>Ingredients</h3>
+      <ul>
+      {props.recipe.ingredients.map(ingredient => (
+        <li key={ingredient}>
+          {ingredient}
+        </li>
+      ))}
+      </ul>
+      <h3>Steps</h3>
+      <ol>
+      {props.recipe.steps.map(step => (
+        <li key={step}>
+          {step}
+        </li>
+      ))}
+      </ol>
     </div>
-    <h3>Ingredients</h3>
-    <ul>
-      <li>Ing1</li>
-      <li>Ing2</li>
-      <li>Ing3</li>
-      <li>Ing4</li>
-      <li>Ing5</li>
-    </ul>
-    <h3>Steps</h3>
-    <ol>
-      <li>Step1</li>
-      <li>Step2</li>
-      <li>Step3</li>
-      <li>Step4</li>
-      <li>Step5</li>
-    </ol>
-  </div>
-)
+  )
+}
 
 export default RecipeDetail
