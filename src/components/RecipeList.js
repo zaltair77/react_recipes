@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const RecipeList = (props) => (
+const RecipeList = props => (
   <div style={props.style}>
     <h2 className="h2">Recipes</h2>
     <ul className="list-reset">
@@ -16,6 +17,12 @@ const RecipeList = (props) => (
       ))}
     </ul>
   </div>
-)
+);
 
-export default RecipeList
+RecipeList.propTypes = {
+  recipes: PropTypes.object,
+  style: PropTypes.object,
+  onClick: PropTypes.func,
+};
+
+export default RecipeList;
