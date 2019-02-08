@@ -14,7 +14,8 @@
       "yarn lint",
       "prettier --write",
       "git add"
-    ]
+    ],
+    "ignore": ["webpack.config.js"]
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
