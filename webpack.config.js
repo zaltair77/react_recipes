@@ -6,27 +6,28 @@ require('dotenv').config();
 
 module.exports = {
   context: path.join(__dirname, 'src'),
-  entry: [ 'whatwg-fetch', './index.js'],
+  entry: ['whatwg-fetch', './index.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: './bundle.js'
+    filename: './bundle.js',
+    publicPath: '/',
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
       },
       {
         test: /\.(png|jpeg)$/,
-        loader: 'file-loader'
+        loader: 'file-loader',
       },
       {
         test: /\.css$/,
-        loader: ['style-loader', 'css-loader', 'postcss-loader']
-      }
-    ]
+        loader: ['style-loader', 'css-loader', 'postcss-loader'],
+      },
+    ],
   },
   devServer: {
     historyApiFallback: true,
@@ -34,10 +35,10 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
-      inject: 'body'
+      inject: 'body',
     }),
     new webpack.DefinePlugin({
-      API_URL: JSON.stringify(process.env.API_URL)
-    })
-  ]
+      API_URL: JSON.stringify(process.env.API_URL),
+    }),
+  ],
 };
